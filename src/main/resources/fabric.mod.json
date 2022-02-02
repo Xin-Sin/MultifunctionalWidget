@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "multifunctional-widget",
+  "version": "${version}",
+  "name": "multifunctional-widget",
+  "description": "about fabric mod a smail set",
+  "authors": [
+    "xinxin"
+  ],
+  "contact": {
+    "website": "www.xinsin.top",
+    "repo": "git@github.com:XinSin-top/MultifunctionalWidget.git"
+  },
+  "license": "MIT",
+  "icon": "assets/MultifunctionalWidget/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "top.xinsin.multifunctionalwidget.client.MultifunctionalWidgetClient"
+    ],
+    "main": [
+      "top.xinsin.multifunctionalwidget.MultifunctionalWidget"
+    ]
+  },
+  "mixins": [
+    "MultifunctionalWidget.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.0",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
