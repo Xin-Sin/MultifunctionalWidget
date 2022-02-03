@@ -17,8 +17,6 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class MultifunctionalWidget implements ModInitializer {
     @Override
     public void onInitialize() {
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
-            CalculateCommand.register(dispatcher);
-        });
+        System.out.println("ModInitializer!");
     }
 }
