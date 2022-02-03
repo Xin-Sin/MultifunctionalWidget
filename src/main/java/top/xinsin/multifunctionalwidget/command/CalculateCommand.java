@@ -9,6 +9,8 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import parsii.tokenizer.ParseException;
+import top.xinsin.multifunctionalwidget.util.calculate;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -21,18 +23,22 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class CalculateCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher){
         //注册计算命令
-        LiteralArgumentBuilder<ServerCommandSource> calculate = literal("calculate")
+        LiteralArgumentBuilder<ServerCommandSource> calculate = literal("calc")
                 .then(CommandManager.argument("msg", MessageArgumentType.message())
-                .executes(context -> { return calculate(context.getSource(),MessageArgumentType.getMessage(context,
+                .executes(context -> { return calculate_(context.getSource(),MessageArgumentType.getMessage(context,
                         "msg"));
                 }));
         dispatcher.register(calculate);
     }
-    private static int calculate(ServerCommandSource serverCommandSource, Text msg){
+    private static int calculate_(ServerCommandSource serverCommandSource, Text msg){
         Entity entity = serverCommandSource.getEntity();
         if (entity instanceof ServerPlayerEntity){
             ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
-            serverPlayerEntity.sendSystemMessage(new LiteralText("1111"),serverPlayerEntity.getUuid());
+            try {
+                serverPlayerEntity.sendSystemMessage(new LiteralText(String.valueOf(calculate.calc(msg.asString()))),serverCommandSource.getEntity().getUuid());
+            } catch (ParseException e) {
+                serverPlayerEntity.sendSystemMessage(new LiteralText("出现错误，请节哀！"),serverCommandSource.getEntity().getUuid());
+            }
         }
         return 1;
     }
