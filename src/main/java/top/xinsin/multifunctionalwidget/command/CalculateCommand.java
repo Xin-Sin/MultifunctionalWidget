@@ -37,7 +37,7 @@ public class CalculateCommand {
             try {
                 serverPlayerEntity.sendSystemMessage(new LiteralText(String.valueOf(calculate.calc(msg.asString()))),serverCommandSource.getEntity().getUuid());
             } catch (ParseException e) {
-                serverPlayerEntity.sendSystemMessage(new LiteralText("出现错误，请节哀！"),serverCommandSource.getEntity().getUuid());
+                serverPlayerEntity.sendSystemMessage(new LiteralText("出现错误,请节哀!"),serverCommandSource.getEntity().getUuid());
             }
         }
         return 1;
